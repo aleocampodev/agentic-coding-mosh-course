@@ -1,6 +1,6 @@
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 
-const COLORS = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#06b6d4', '#8b5cf6', '#ec4899'];
+const COLORS = ['#f43f5e', '#f97316', '#eab308', '#10b981', '#06b6d4', '#8b5cf6', '#ec4899'];
 
 function CategoryChart({ transactions }) {
   const expensesByCategory = transactions
@@ -16,11 +16,18 @@ function CategoryChart({ transactions }) {
   }));
 
   if (data.length === 0) {
-    return <p>No expenses to display.</p>;
+    return (
+      <div className="chart-container">
+        <h2>Expenses by Category</h2>
+        <p style={{ color: 'var(--color-text-muted)' }}>No expenses to display.</p>
+      </div>
+    );
   }
 
   return (
-    <div style={{ width: '100%', height: 300 }}>
+    <div className="chart-container">
+      <h2>Expenses by Category</h2>
+      <div style={{ width: '100%', height: 300 }}>
       <ResponsiveContainer>
         <PieChart>
           <Pie
@@ -40,6 +47,7 @@ function CategoryChart({ transactions }) {
           <Legend />
         </PieChart>
       </ResponsiveContainer>
+    </div>
     </div>
   );
 }
