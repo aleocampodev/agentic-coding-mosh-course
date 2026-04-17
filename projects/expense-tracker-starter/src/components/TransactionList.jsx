@@ -1,10 +1,9 @@
 import { useState } from 'react';
+import { CATEGORIES } from '../constants';
 
 function TransactionList({ transactions, onDelete }) {
   const [filterType, setFilterType] = useState("all");
   const [filterCategory, setFilterCategory] = useState("all");
-
-  const categories = ["food", "housing", "utilities", "transport", "entertainment", "salary", "other"];
 
   let filteredTransactions = [...transactions].sort((a, b) => new Date(b.date) - new Date(a.date));
   if (filterType !== "all") {
@@ -39,7 +38,7 @@ function TransactionList({ transactions, onDelete }) {
         </select>
         <select value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)}>
           <option value="all">All Categories</option>
-          {categories.map(cat => (
+          {CATEGORIES.map(cat => (
             <option key={cat} value={cat}>{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
           ))}
         </select>
